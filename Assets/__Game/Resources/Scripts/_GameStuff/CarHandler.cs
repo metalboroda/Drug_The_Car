@@ -1,44 +1,32 @@
-﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.__Game.Resources.Scripts._GameStuff
 {
-  public class CarHandler : MonoBehaviour
+  public class CarHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
   {
-    private List<GameObject> _wheels = new List<GameObject>();
+    private Vector3 _originalPosition;
+    private Vector3 _offset;
 
-    void Start() {
-      _wheels = GetAllWheelObjects();
+    public void OnPointerDown(PointerEventData eventData) {
+      Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+
+      mouseWorldPos.z = transform.position.z;
+      _offset = transform.position - mouseWorldPos;
+      _originalPosition = transform.position;
     }
 
-    List<GameObject> GetAllWheelObjects() {
-      List<GameObject> wheelObjects = new List<GameObject>();
-
-      GetAllWheelObjectsRecursive(transform, wheelObjects);
-
-      return wheelObjects;
+    public void OnPointerUp(PointerEventData eventData) {
     }
 
-    void GetAllWheelObjectsRecursive(Transform parent, List<GameObject> wheelObjects) {
-      foreach (Transform child in parent) {
-        if (ContainsWord(child.gameObject.name, "Wheel") || ContainsWord(child.gameObject.name, "wheel")) {
-          wheelObjects.Add(child.gameObject);
-        }
+    public void OnDrag(PointerEventData eventData) {
+      Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(eventData.position);
 
-        GetAllWheelObjectsRecursive(child, wheelObjects);
-      }
-    }
+      mouseWorldPos.z = transform.position.z;
 
-    bool ContainsWord(string name, string word) {
-      char[] delimiters = { ' ', '_', '-', '.', ',' };
-      string[] words = name.Split(delimiters);
+      Vector3 newPosition = mouseWorldPos + _offset;
 
-      foreach (string w in words) {
-        if (w.Equals(word, System.StringComparison.OrdinalIgnoreCase)) {
-          return true;
-        }
-      }
-      return false;
+      transform.position = new Vector3(newPosition.x, newPosition.y, _originalPosition.z);
     }
   }
 }

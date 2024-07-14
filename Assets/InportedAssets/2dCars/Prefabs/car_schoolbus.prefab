@@ -179,6 +179,9 @@ GameObject:
   - component: {fileID: 440142}
   - component: {fileID: 21252858}
   - component: {fileID: -1962161820788122682}
+  - component: {fileID: -8468979453397721586}
+  - component: {fileID: 3459612862279207527}
+  - component: {fileID: -3452971434259935860}
   m_Layer: 0
   m_Name: car_schoolbus
   m_TagString: Untagged
@@ -267,3 +270,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4818d374a25023548a49c15bf75bc3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8468979453397721586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e750f973e05624646a87b191ae67ff4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3459612862279207527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.99, y: 1.79, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-3452971434259935860
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195246}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

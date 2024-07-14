@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 462920}
   - component: {fileID: 21262488}
   - component: {fileID: 4367700481852191643}
+  - component: {fileID: 1585793841517372091}
+  - component: {fileID: 9108360764895875138}
+  - component: {fileID: -422518523473437817}
   m_Layer: 0
   m_Name: car_jag
   m_TagString: Untagged
@@ -101,6 +104,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4818d374a25023548a49c15bf75bc3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1585793841517372091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e750f973e05624646a87b191ae67ff4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &9108360764895875138
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.72, y: 1.06, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &-422518523473437817
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114662}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &131680
 GameObject:
   m_ObjectHideFlags: 0
