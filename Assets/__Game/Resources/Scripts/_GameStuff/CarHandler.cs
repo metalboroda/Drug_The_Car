@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,8 +7,54 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
 {
   public class CarHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
   {
+    private Vector3 _startLocalPosition;
     private Vector3 _originalPosition;
     private Vector3 _offset;
+    private bool _canPlace = false;
+    private bool _onCar = false;
+    private bool _onRoad = false;
+
+    private void Start() {
+      StartCoroutine(DoMoveToAnotherParent());
+    }
+
+    private void OnTriggerEnter(Collider other) {
+      if (other.TryGetComponent(out CarHandler carHandler)) {
+        _onCar = true;
+      }
+
+      if (other.TryGetComponent(out RoadCollider roadCollider)) {
+        _onRoad = true;
+      }
+
+      UpdateCanPlace();
+    }
+
+    private void OnTriggerExit(Collider other) {
+      if (other.TryGetComponent(out CarHandler carHandler)) {
+        _onCar = false;
+      }
+
+      if (other.TryGetComponent(out RoadCollider roadCollider)) {
+        _onRoad = false;
+      }
+
+      UpdateCanPlace();
+    }
+
+    private IEnumerator DoMoveToAnotherParent() {
+      yield return new WaitForEndOfFrame();
+
+      transform.parent = transform.parent.parent;
+
+      yield return new WaitForEndOfFrame();
+
+      _startLocalPosition = transform.localPosition;
+    }
+
+    private void UpdateCanPlace() {
+      _canPlace = _onRoad && !_onCar;
+    }
 
     public void OnPointerDown(PointerEventData eventData) {
       Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(eventData.position);
@@ -17,6 +65,9 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     }
 
     public void OnPointerUp(PointerEventData eventData) {
+      if (_canPlace == false) {
+        transform.DOLocalMove(_startLocalPosition, 0.25f);
+      }
     }
 
     public void OnDrag(PointerEventData eventData) {

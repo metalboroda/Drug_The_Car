@@ -32,9 +32,9 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     }
 
     private IEnumerator DoDisableArangement() {
-      yield return new WaitForSeconds(1);
+      yield return new WaitForEndOfFrame();
 
-      this.enabled = false;
+      enabled = false;
     }
   }
 }
