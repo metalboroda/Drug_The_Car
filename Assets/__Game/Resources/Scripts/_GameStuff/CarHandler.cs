@@ -77,6 +77,7 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
         new EventStructs.VariantAudioClickedEvent { AudioClip = _honkCLip });
 
       _levelContainer.SwitchTutorial(2);
+      _levelContainer.ResetAndStartStuporTimer();
     }
 
     public void OnPointerUp(PointerEventData eventData) {

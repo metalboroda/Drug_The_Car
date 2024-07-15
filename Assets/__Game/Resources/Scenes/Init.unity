@@ -440,7 +440,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b393894dfe371d04b80cbc83e72ac8f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8ec579b742c99644818a7c856fb8305, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2087,8 +2087,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicMixer: {fileID: 24100000, guid: 618f0dc0539fcf947aaa814bc718890b, type: 2}
   _soundtrackClips:
-  - {fileID: 8300000, guid: 1203ab38219a6dd40a1cb6b101e395d1, type: 3}
-  - {fileID: 8300000, guid: 985985dcdc4b6d4498955c99a7443c04, type: 3}
+  - {fileID: 8300000, guid: 18ebdb6dcd586424397a919b55a5809e, type: 3}
+  - {fileID: 8300000, guid: a9f94d264da558b48a97d1ef032500cb, type: 3}
 --- !u!82 &1668459660
 AudioSource:
   m_ObjectHideFlags: 0

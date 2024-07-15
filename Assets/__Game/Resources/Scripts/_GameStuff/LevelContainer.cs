@@ -1,9 +1,11 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.__Game.Resources.Scripts.Game.States;
 using Assets.__Game.Scripts.Infrastructure;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static __Game.Resources.Scripts.EventBus.EventStructs;
 
 namespace Assets.__Game.Resources.Scripts._GameStuff
 {
@@ -29,8 +31,12 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     [Space]
     [SerializeField] private GameObject[] _tutorialFingers;
 
+    private Coroutine _stuporTimeoutRoutine;
+
     private GameBootstrapper _gameBootstrapper;
     private RoadCollider _roadCollider;
+
+    private EventBinding<EventStructs.StateChanged> _stateChangedEvent;
 
     private void Awake() {
       _gameBootstrapper = GameBootstrapper.Instance;
@@ -42,11 +48,18 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     }
 
     private void OnEnable() {
+      _stateChangedEvent = new EventBinding<StateChanged>(StuporTimerDependsOnState);
+
       SubscribeButtons();
     }
 
     private void Start() {
+      _stateChangedEvent.Remove(StuporTimerDependsOnState);
+
       SwitchTutorial(0);
+      ResetAndStartStuporTimer();
+
+      EventBus<VariantsAssignedEvent>.Raise(new EventStructs.VariantsAssignedEvent());
     }
 
     private void SubscribeButtons() {
@@ -54,6 +67,7 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
         _submitButton.gameObject.SetActive(true);
 
         SwitchTutorial(1);
+        ResetAndStartStuporTimer();
       });
 
       _submitButton.onClick.AddListener(() => {
@@ -105,6 +119,30 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
       else {
         _tutorialFingers[index].SetActive(true);
       }
+    }
+
+    private void StuporTimerDependsOnState(StateChanged stateChanged) {
+      if (stateChanged.State is GameplayState)
+        ResetAndStartStuporTimer();
+      else {
+        if (_stuporTimeoutRoutine != null)
+          StopCoroutine(_stuporTimeoutRoutine);
+      }
+    }
+
+    public void ResetAndStartStuporTimer() {
+      if (_stuporTimeoutRoutine != null)
+        StopCoroutine(_stuporTimeoutRoutine);
+
+      _stuporTimeoutRoutine = StartCoroutine(DoStuporTimerCoroutine());
+    }
+
+    private IEnumerator DoStuporTimerCoroutine() {
+      yield return new WaitForSeconds(15);
+
+      EventBus<StuporEvent>.Raise(new StuporEvent());
+
+      ResetAndStartStuporTimer();
     }
   }
 }
