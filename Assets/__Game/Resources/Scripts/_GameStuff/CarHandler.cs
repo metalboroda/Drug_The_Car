@@ -20,6 +20,8 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     private bool _onCar = false;
     private bool _onRoad = false;
 
+    private LevelContainer _levelContainer;
+
     private void Start() {
       StartCoroutine(DoMoveToAnotherParent());
     }
@@ -56,6 +58,8 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
       yield return new WaitForEndOfFrame();
 
       _startLocalPosition = transform.localPosition;
+
+      _levelContainer = GetComponentInParent<LevelContainer>();
     }
 
     private void UpdateCanPlace() {
@@ -71,6 +75,8 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
 
       EventBus<EventStructs.VariantAudioClickedEvent>.Raise(
         new EventStructs.VariantAudioClickedEvent { AudioClip = _honkCLip });
+
+      _levelContainer.SwitchTutorial(2);
     }
 
     public void OnPointerUp(PointerEventData eventData) {
