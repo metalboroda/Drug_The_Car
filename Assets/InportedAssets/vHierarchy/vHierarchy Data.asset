@@ -23,23 +23,12 @@ MonoBehaviour:
     - goDatasByGlobalId:
         keys:
         - GlobalObjectId_V1-2-19b7eee32d06feb43aab69311fe008e4-883768082-0
-        - GlobalObjectId_V1-2-19b7eee32d06feb43aab69311fe008e4-8575972909099622058-0
         values:
-        - iColor: 2
-          icon: 
-        - iColor: 0
+        - iColor: 9
           icon: 
       goDatasByInstanceId:
-        keys: 3061000086640000326a0000faf3ffff
-        values:
-        - iColor: 2
-          icon: 
-        - iColor: 2
-          icon: 
-        - iColor: 2
-          icon: 
-        - iColor: 0
-          icon: 
+        keys: 
+        values: []
     - goDatasByGlobalId:
         keys: []
         values: []
@@ -49,13 +38,18 @@ MonoBehaviour:
     - goDatasByGlobalId:
         keys:
         - GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1952100301-0
+        - GlobalObjectId_V1-2-2cda990e2423bbf4892e6590ba056729-1106577185-0
         values:
         - iColor: 0
           icon: 
+        - iColor: 9
+          icon: 
       goDatasByInstanceId:
-        keys: 5e670000
+        keys: 5266000074650000
         values:
         - iColor: 0
+          icon: 
+        - iColor: 9
           icon: 
     - goDatasByGlobalId:
         keys: []
@@ -70,7 +64,7 @@ MonoBehaviour:
         - iColor: 0
           icon: 
       goDatasByInstanceId:
-        keys: 66630000
+        keys: 68610000
         values:
         - iColor: 0
           icon: 

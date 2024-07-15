@@ -45,6 +45,8 @@ namespace __Game.Resources.Scripts.EventBus
     public struct WinEvent : IEvent { }
     public struct LoseEvent : IEvent { }
     public struct StuporEvent : IEvent { }
+    public struct Win : IEvent { }
+    public struct Lose : IEvent { }
     #endregion
 
     #region ScoreManager

@@ -1,3 +1,4 @@
+using __Game.Resources.Scripts.EventBus;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
@@ -7,6 +8,11 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
 {
   public class CarHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
   {
+    [Header("Audio")]
+    [SerializeField] private AudioClip _honkCLip;
+
+    public bool Placed { get; private set; } = false;
+
     private Vector3 _startLocalPosition;
     private Vector3 _originalPosition;
     private Vector3 _offset;
@@ -62,12 +68,22 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
       mouseWorldPos.z = transform.position.z;
       _offset = transform.position - mouseWorldPos;
       _originalPosition = transform.position;
+
+      EventBus<EventStructs.VariantAudioClickedEvent>.Raise(
+        new EventStructs.VariantAudioClickedEvent { AudioClip = _honkCLip });
     }
 
     public void OnPointerUp(PointerEventData eventData) {
       if (_canPlace == false) {
         transform.DOLocalMove(_startLocalPosition, 0.25f);
+
+        Placed = false;
       }
+      else {
+        Placed = true;
+      }
+
+      EventBus<EventStructs.UiButtonEvent>.Raise(new EventStructs.UiButtonEvent());
     }
 
     public void OnDrag(PointerEventData eventData) {

@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadCollider : MonoBehaviour
+namespace Assets.__Game.Resources.Scripts._GameStuff
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+  public class RoadCollider : MonoBehaviour
+  {
+    public int CarsOnRoadCounter { get; private set; }
+
+    private void OnTriggerEnter(Collider other) {
+      if (other.TryGetComponent(out CarHandler carHandler))
+        CarsOnRoadCounter++;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerExit(Collider other) {
+      if (other.TryGetComponent(out CarHandler carHandler)) {
+        if (CarsOnRoadCounter > 0)
+          CarsOnRoadCounter--;
+      }
     }
+  }
 }
