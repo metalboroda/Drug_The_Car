@@ -37,6 +37,14 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
       _wheels = GetAllWheelObjects();
     }
 
+    private void OnDestroy() {
+      DOTween.Kill(transform);
+
+      foreach (var wheel in _wheels) {
+        DOTween.Kill(wheel.transform);
+      }
+    }
+
     List<GameObject> GetAllWheelObjects() {
       List<GameObject> wheelObjects = new List<GameObject>();
 
@@ -70,8 +78,13 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     private void MoveCar(EventStructs.Win win) {
       if (_carHandler.Placed == false) return;
 
-      transform.DOLocalMoveX(_movementDestinationX, _movementSpeed)
-        .SetSpeedBased(true);
+      try {
+        transform.DOLocalMoveX(_movementDestinationX, _movementSpeed)
+          .SetSpeedBased(true);
+      }
+      catch {
+      }
+
     }
 
     private void RotateWheels(EventStructs.Win win) {
@@ -79,10 +92,14 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
 
       Vector3 rotationDirection = new Vector3(0, 0, -360);
 
-      foreach (var wheel in _wheels) {
-        wheel.transform.DOLocalRotate(rotationDirection, _wheelRotationSpeed, RotateMode.FastBeyond360)
-          .SetLoops(-1, LoopType.Restart)
-          .SetSpeedBased(true);
+      try {
+        foreach (var wheel in _wheels) {
+          wheel.transform.DOLocalRotate(rotationDirection, _wheelRotationSpeed, RotateMode.FastBeyond360)
+            .SetLoops(-1, LoopType.Restart)
+            .SetSpeedBased(true);
+        }
+      }
+      catch {
       }
     }
   }

@@ -74,7 +74,7 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
         EventBus<EventStructs.Lose>.Raise(new EventStructs.Lose());
 
         if (_gameBootstrapper != null) {
-          _gameBootstrapper.StateMachine.ChangeStateWithDelay(new GameLoseState(_gameBootstrapper), 1.5f, this);
+          _gameBootstrapper.StateMachine.ChangeStateWithDelay(new GameLoseState(_gameBootstrapper), 0.25f, this);
         }
       }
     }
