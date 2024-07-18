@@ -66,6 +66,9 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
       _voiceButton.onClick.AddListener(() => {
         _submitButton.gameObject.SetActive(true);
 
+        EventBus<EventStructs.VariantAudioClickedEvent>.Raise(
+            new EventStructs.VariantAudioClickedEvent { AudioClip = _voiceClip });
+
         SwitchTutorial(1);
         ResetAndStartStuporTimer();
       });

@@ -1,6 +1,7 @@
 using __Game.Resources.Scripts.EventBus;
 using DG.Tweening;
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -20,7 +21,14 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
     private bool _onCar = false;
     private bool _onRoad = false;
 
+    private AudioSource _audioSource;
+
     private LevelContainer _levelContainer;
+
+    private void Awake() {
+      _audioSource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
+      _audioSource.playOnAwake = false;
+    }
 
     private void Start() {
       StartCoroutine(DoMoveToAnotherParent());
@@ -73,8 +81,12 @@ namespace Assets.__Game.Resources.Scripts._GameStuff
       _offset = transform.position - mouseWorldPos;
       _originalPosition = transform.position;
 
-      EventBus<EventStructs.VariantAudioClickedEvent>.Raise(
-        new EventStructs.VariantAudioClickedEvent { AudioClip = _honkCLip });
+      //EventBus<EventStructs.VariantAudioClickedEvent>.Raise(
+      //  new EventStructs.VariantAudioClickedEvent { AudioClip = _honkCLip });
+
+      if (_audioSource != null) {
+        _audioSource.PlayOneShot(_honkCLip);
+      }
 
       _levelContainer.SwitchTutorial(2);
       _levelContainer.ResetAndStartStuporTimer();

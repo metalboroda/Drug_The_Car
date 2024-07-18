@@ -42,7 +42,7 @@ namespace Assets.__Game.Scripts.Infrastructure
           StateMachine.Init(new GameQuestState(this));
 
           _questStateOnce = true;
-        }
+        } 
         else {
           StateMachine.ChangeState(new GameplayState(this));
         }

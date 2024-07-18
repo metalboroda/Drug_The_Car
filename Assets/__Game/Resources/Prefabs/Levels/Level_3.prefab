@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7311929803054971101, guid: a454cc821da5e1b419971d0230763865, type: 3}
+      propertyPath: _voiceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b05d7193e65d7aa4bac3ecb0050b9575, type: 3}
+    - target: {fileID: 7311929803054971101, guid: a454cc821da5e1b419971d0230763865, type: 3}
       propertyPath: _carsAmountToWin
       value: 4
       objectReference: {fileID: 0}
@@ -62,6 +66,10 @@ PrefabInstance:
     - target: {fileID: 8974865717979555193, guid: a454cc821da5e1b419971d0230763865, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124004346981231718, guid: a454cc821da5e1b419971d0230763865, type: 3}
+      propertyPath: _questStartClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a454cc821da5e1b419971d0230763865, type: 3}
