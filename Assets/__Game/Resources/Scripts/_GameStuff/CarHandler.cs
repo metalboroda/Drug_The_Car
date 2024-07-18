@@ -1,7 +1,6 @@
 using __Game.Resources.Scripts.EventBus;
 using DG.Tweening;
 using System.Collections;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
